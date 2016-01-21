@@ -1,0 +1,27 @@
+{
+  "name": "react-native-datetime",
+  "version": "0.0.1",
+  "description": "A datetime-picker for react-native support for android and ios",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cnjon/react-native-datetime.git"
+  },
+  "keywords": [
+    "react-component",
+    "react-native",
+    "ios",
+    "android",
+    "date",
+    "time",
+    "datetime"
+  ],
+  "author": {
+    "name": "cnjon",
+    "url": "https://github.com/cnjon"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cnjon/react-native-datetime/issues"
+  }
+}
