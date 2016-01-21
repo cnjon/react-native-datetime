@@ -24,6 +24,7 @@ export default class DateTimePicker extends Component {
             mode: 'date',
             date: new Date()
         }
+        this.callback = ()=>{};
     }
 
     showDatePicker(date, callback) {
@@ -78,35 +79,47 @@ export default class DateTimePicker extends Component {
 
     render() {
         return this.state.visible && (
-                <View style={styles.actionSheetContainer}>
-                    <TouchableOpacity
-                        style={styles.touchableOpacity}
-                        activeOpacity={1}
-                        onPress={this.onClose} />
-                    <DatePickerIOS
-                        date={this.state.date}
-                        mode={this.state.mode}
-                        onDateChange={this.onDateChange}
-                        style = {styles.datePicker}
-                    />
-                    <View style={styles.separator}/>
-                    <TouchableOpacity
-                        onPress={this.onComplete}
-                        style={styles.button}><Text>完成</Text></TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.touchableOpacity}
-                        activeOpacity={1}
-                        onPress={this.onClose} />
+                <View style={styles.container}>
+                    <View style={styles.actionSheetContainer}>
+                        <TouchableOpacity
+                            style={styles.touchableOpacity}
+                            activeOpacity={1}
+                            onPress={()=>{this.onClose()}} />
+                        <DatePickerIOS
+                            date={this.state.date}
+                            mode={this.state.mode}
+                            onDateChange={(date)=>{this.onDateChange(date)}}
+                            style = {styles.datePicker}
+                        />
+                        <View style={styles.separator}/>
+                        <TouchableOpacity
+                            onPress={()=>{this.onComplete()}}
+                            style={styles.button}>
+                            <Text>完成</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={styles.touchableOpacity}
+                            activeOpacity={1}
+                            onPress={()=>{this.onClose()}} />
+                    </View>
                 </View>
             );
     }
 }
 
 const styles = StyleSheet.create({
+    container:{
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
+        backgroundColor: 'transparent',
+        position: 'absolute'
+    },
     actionSheetContainer: {
         height: Screen.height,
-        justifyContent: "center",
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        justifyContent: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)'
     },
     datePicker: {
         backgroundColor: 'white',
@@ -117,6 +130,8 @@ const styles = StyleSheet.create({
     button: {
         paddingVertical: 10,
         backgroundColor: 'white',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     separator: {
         height: 1,

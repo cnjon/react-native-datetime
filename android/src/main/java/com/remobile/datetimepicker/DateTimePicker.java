@@ -69,8 +69,8 @@ public class DateTimePicker extends DialogFragment implements OnDateChangedListe
         }
         if (dateTimeLayout == null){
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
+                LinearLayout.LayoutParams.FILL_PARENT,
+                LinearLayout.LayoutParams.FILL_PARENT
             );
             dateTimeLayout = new LinearLayout(this.getActivity());
             dateTimeLayout.setLayoutParams(params);
