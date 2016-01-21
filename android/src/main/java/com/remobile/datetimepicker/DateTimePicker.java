@@ -14,7 +14,7 @@ import android.util.Log;
 
 import android.app.AlertDialog;
 import android.widget.LinearLayout;
-import android.widget.EditText;
+import android.widget.ScrollView;
 
 import java.util.Calendar;
 import android.text.format.DateFormat;
@@ -31,6 +31,7 @@ public class DateTimePicker extends DialogFragment implements OnDateChangedListe
     private int hour, minute;
 
     private LinearLayout dateTimeLayout;
+    private ScrollView dateTimeScrollView;
     private DatePicker datePicker;
     private TimePicker timePicker;
     private AlertDialog ad;
@@ -50,6 +51,7 @@ public class DateTimePicker extends DialogFragment implements OnDateChangedListe
     private void setCurrentDatetime(){
         currentDateTime = year +"/"+(month+1)+"/"+day+" "+hour+":"+minute;
         datePicker.init(year, month, day, this);
+        datePicker.setCalendarViewShown(false);
         timePicker.setCurrentHour(hour);
         timePicker.setCurrentMinute(minute);
     }
@@ -76,10 +78,14 @@ public class DateTimePicker extends DialogFragment implements OnDateChangedListe
             dateTimeLayout.addView(datePicker);
             dateTimeLayout.addView(timePicker);
         }
+        if (dateTimeScrollView == null){
+            dateTimeScrollView = new ScrollView(this.getActivity());
+            dateTimeScrollView.addView(dateTimeLayout);
+        }
         setCurrentDatetime();
         ad = new AlertDialog.Builder(this.getActivity())
             .setTitle(currentDateTime)
-            .setView(dateTimeLayout)
+            .setView(dateTimeScrollView)
             .setPositiveButton("设置", this)
             .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int whichButton) {}
