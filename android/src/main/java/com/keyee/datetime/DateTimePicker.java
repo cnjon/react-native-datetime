@@ -18,6 +18,7 @@ import android.widget.ScrollView;
 
 import java.util.Calendar;
 import android.text.format.DateFormat;
+import java.text.SimpleDateFormat;
 
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReadableMap;
@@ -27,8 +28,6 @@ public class DateTimePicker extends DialogFragment implements OnDateChangedListe
 {
     static final String TAG = DateTimePicker.class.getSimpleName();
     private Callback callback;
-    private int year, month, day;
-    private int hour, minute;
 
     private LinearLayout dateTimeLayout;
     private ScrollView dateTimeScrollView;
@@ -36,24 +35,38 @@ public class DateTimePicker extends DialogFragment implements OnDateChangedListe
     private TimePicker timePicker;
     private AlertDialog ad;
 
-    private String currentDateTime;
+    private Calendar calendar;
 
     public DateTimePicker(ReadableMap options, Callback callback) {
-        final Calendar c = Calendar.getInstance();
         this.callback = callback;
-        year = options.hasKey("year") ? options.getInt("year") : c.get(Calendar.YEAR);
-        month = options.hasKey("month") ? options.getInt("month") : c.get(Calendar.MONTH);
-        day = options.hasKey("day") ? options.getInt("day") : c.get(Calendar.DAY_OF_MONTH);
-        hour = options.hasKey("hour") ? options.getInt("hour") : c.get(Calendar.HOUR_OF_DAY);
-        minute = options.hasKey("minute") ? options.getInt("minute") : c.get(Calendar.MINUTE);
+        calendar = Calendar.getInstance();
+        if (options.hasKey("year")) {
+            calendar.set(Calendar.YEAR, options.getInt("year"));
+        }
+        if (options.hasKey("month")) {
+            calendar.set(Calendar.MONTH, options.getInt("month"));
+        }
+        if (options.hasKey("day")) {
+            calendar.set(Calendar.DAY_OF_MONTH, options.getInt("day"));
+        }
+        if (options.hasKey("hour")) {
+            calendar.set(Calendar.HOUR_OF_DAY, options.getInt("hour"));
+        }
+        if (options.hasKey("minute")) {
+            calendar.set(Calendar.MINUTE, options.getInt("minute"));
+        }
     }
 
-    private void setCurrentDatetime(){
-        currentDateTime = year +"/"+(month+1)+"/"+day+" "+hour+":"+minute;
-        datePicker.init(year, month, day, this);
+    private void initializePickers(){
+        datePicker.init(
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH),
+            this
+        );
         datePicker.setCalendarViewShown(false);
-        timePicker.setCurrentHour(hour);
-        timePicker.setCurrentMinute(minute);
+        timePicker.setCurrentHour(calendar.get(Calendar.HOUR_OF_DAY));
+        timePicker.setCurrentMinute(calendar.get(Calendar.MINUTE));
     }
 
     @Override
@@ -82,9 +95,9 @@ public class DateTimePicker extends DialogFragment implements OnDateChangedListe
             dateTimeScrollView = new ScrollView(this.getActivity());
             dateTimeScrollView.addView(dateTimeLayout);
         }
-        setCurrentDatetime();
+        initializePickers();
         ad = new AlertDialog.Builder(this.getActivity())
-            .setTitle(currentDateTime)
+            .setTitle(getFormattedDateTime())
             .setView(dateTimeScrollView)
             .setPositiveButton("设置", this)
             .setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -94,26 +107,36 @@ public class DateTimePicker extends DialogFragment implements OnDateChangedListe
     }
 
     public void onClick(DialogInterface dialog, int whichButton) {
-        this.callback.invoke(this.year, this.month, this.day, this.hour, this.minute);
+        this.callback.invoke(
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH),
+            calendar.get(Calendar.HOUR_OF_DAY),
+            calendar.get(Calendar.MINUTE)
+        );
+    }
+
+    private String getFormattedDateTime() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
+        return simpleDateFormat.format(calendar.getTime());
     }
 
     private void setTitle(){
         if (ad != null){
-            currentDateTime = year +"/"+(month+1)+"/"+day+" "+hour+":"+minute;
-            ad.setTitle(currentDateTime);
+            ad.setTitle(getFormattedDateTime());
         }
     }
 
     public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-        this.year = year;
-        this.month = monthOfYear;
-        this.day = dayOfMonth;
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.MONTH, monthOfYear);
+        calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
         setTitle();
     }
 
     public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
-        this.hour = hourOfDay;
-        this.minute = minute;
+        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+        calendar.set(Calendar.MINUTE, minute);
         setTitle();
     }
 }
