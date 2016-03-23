@@ -13,6 +13,8 @@ import android.os.Bundle;
 import android.util.Log;
 
 import android.app.AlertDialog;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
@@ -21,7 +23,6 @@ import android.text.format.DateFormat;
 
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReadableMap;
-
 
 public class DateTimePicker extends DialogFragment implements OnDateChangedListener,OnTimeChangedListener,DialogInterface.OnClickListener
 {
@@ -62,7 +63,7 @@ public class DateTimePicker extends DialogFragment implements OnDateChangedListe
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         if (datePicker == null){
-            datePicker = new DatePicker(this.getActivity());
+            datePicker = new ScrollableDatePicker(this.getActivity());
             datePicker.setCalendarViewShown(false);
         }
         if (timePicker == null){
