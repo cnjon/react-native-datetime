@@ -29,6 +29,7 @@ public class DateTimePicker extends DialogFragment implements OnDateChangedListe
     private Callback callback;
     private int year, month, day;
     private int hour, minute;
+    private String cancelText, okText;
 
     private LinearLayout dateTimeLayout;
     private ScrollView dateTimeScrollView;
@@ -46,6 +47,8 @@ public class DateTimePicker extends DialogFragment implements OnDateChangedListe
         day = options.hasKey("day") ? options.getInt("day") : c.get(Calendar.DAY_OF_MONTH);
         hour = options.hasKey("hour") ? options.getInt("hour") : c.get(Calendar.HOUR_OF_DAY);
         minute = options.hasKey("minute") ? options.getInt("minute") : c.get(Calendar.MINUTE);
+        cancelText = options.getString("cancelText");
+        okText = options.getString("okText");
     }
 
     private void setCurrentDatetime(){
@@ -86,8 +89,8 @@ public class DateTimePicker extends DialogFragment implements OnDateChangedListe
         ad = new AlertDialog.Builder(this.getActivity())
             .setTitle(currentDateTime)
             .setView(dateTimeScrollView)
-            .setPositiveButton("设置", this)
-            .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            .setPositiveButton(okText, this)
+            .setNegativeButton(cancelText, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int whichButton) {}
             }).show();
         return ad;

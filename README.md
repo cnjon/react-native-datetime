@@ -110,7 +110,7 @@ var {
     Text,
 } = React;
 
-var DateTimePicker = require('@remobile/react-native-datetime-picker');
+var DateTimePicker = require('react-native-datetime');
 var Button = require('@remobile/react-native-simple-button');
 
 module.exports = React.createClass({
@@ -170,5 +170,6 @@ var styles = StyleSheet.create({
 * showTimePicker(date, callback(date))
 * showDateTimePicker(date, callback(date))
 
-### Caution
-* don't need set any props for <DateTimePicker>
+### Props
+* cancelText (default: **Cancel**)
+* okText (default: **Ok**)

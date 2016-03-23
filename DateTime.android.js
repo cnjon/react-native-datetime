@@ -5,20 +5,36 @@
 
 import React,{
     Component,
+    NativeModules,
+    PropTypes,
     View,
-    NativeModules
 } from 'react-native';
 
 const RCTDateTimePicker = NativeModules.DateTimePicker;
 
 export default class DateTimePicker extends Component {
+    static propTypes = {
+        cancelText: PropTypes.string,
+        okText:  PropTypes.string
+    };
+
+    static defaultProps = {
+        cancelText: 'Cancel',
+        okText: 'Ok'
+    };
+
     constructor(props) {
         super(props);
     }
 
     showDatePicker(date, callback) {
         date = date || new Date();
-        var options = {year:date.getFullYear(), month:date.getMonth(), day:date.getDate()};
+        var options = {
+            ...this.props,
+            year:date.getFullYear(),
+            month:date.getMonth(),
+            day:date.getDate()
+        };
         RCTDateTimePicker.showDatePicker(options, function (year, month, day) {
             date.setFullYear(year);
             date.setMonth(month);
@@ -29,7 +45,11 @@ export default class DateTimePicker extends Component {
 
     showTimePicker(date, callback) {
         date = date || new Date();
-        var options = {hour:date.getHours(), minute:date.getMinutes()};
+        var options = {
+            ...this.props,
+            hour:date.getHours(),
+            minute:date.getMinutes()
+        };
         RCTDateTimePicker.showTimePicker(options, function (hour, minute) {
             date.setHours(hour);
             date.setMinutes(minute);
@@ -39,7 +59,14 @@ export default class DateTimePicker extends Component {
 
     showDateTimePicker(date, callback) {
         date = date || new Date();
-        var options = {year:date.getFullYear(), month:date.getMonth(), day:date.getDate(), hour:date.getHours(), minute:date.getMinutes()};
+        var options = {
+            ...this.props,
+            year:date.getFullYear(),
+            month:date.getMonth(),
+            day:date.getDate(),
+            hour:date.getHours(),
+            minute:date.getMinutes()
+        };
         RCTDateTimePicker.showDateTimePicker(options, function (year, month, day, hour, minute) {
             date.setFullYear(year);
             date.setMonth(month);
