@@ -35,11 +35,16 @@ public class DateTimePicker extends DialogFragment implements OnDateChangedListe
     private TimePicker timePicker;
     private AlertDialog ad;
 
+    private String cancelText;
+    private String okText;
+
     private Calendar calendar;
 
     public DateTimePicker(ReadableMap options, Callback callback) {
         this.callback = callback;
         calendar = Calendar.getInstance();
+        cancelText = options.getString("cancelText");
+        okText = options.getString("okText");
         if (options.hasKey("year")) {
             calendar.set(Calendar.YEAR, options.getInt("year"));
         }
