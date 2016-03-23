@@ -5,18 +5,27 @@
 
 import React,{
     Component,
-    StyleSheet,
-    View,
     DatePickerIOS,
-    TouchableOpacity,
+    Dimensions,
     Navigator,
+    PropTypes
+    StyleSheet,
     Text,
-    Dimensions
+    TouchableOpacity,
+    View,
 } from 'react-native';
 
 const Screen = Dimensions.get('window');
 
 export default class DateTimePicker extends Component {
+    static propTypes = {
+        okText: PropTypes.string
+    };
+
+    static defaultProps = {
+        okText: "Ok"
+    };
+
     constructor(props) {
         super(props);
         this.state = {
@@ -95,7 +104,7 @@ export default class DateTimePicker extends Component {
                         <TouchableOpacity
                             onPress={()=>{this.onComplete()}}
                             style={styles.button}>
-                            <Text>完成</Text>
+                            <Text>{ this.props.okText }</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.touchableOpacity}

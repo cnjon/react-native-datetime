@@ -99,8 +99,8 @@ public class DateTimePicker extends DialogFragment implements OnDateChangedListe
         ad = new AlertDialog.Builder(this.getActivity())
             .setTitle(getFormattedDateTime())
             .setView(dateTimeScrollView)
-            .setPositiveButton("设置", this)
-            .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            .setPositiveButton(okText, this)
+            .setNegativeButton(cancelText, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int whichButton) {}
             }).show();
         return ad;
