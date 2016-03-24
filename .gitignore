@@ -31,5 +31,5 @@ local.properties
 # node.js
 #
 node_modules/
-example/
 npm-debug.log
+*.iml

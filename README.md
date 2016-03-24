@@ -10,6 +10,7 @@ npm install react-native-datetime --save
 * not need install, on ios use js write
 
 ### Installation (Android)
+* In `android/settings.gradle`
 ```gradle
 ...
 include ':react-native-datetime'
@@ -42,7 +43,7 @@ public class MainActivity extends ReactActivity {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
-        new RCTDateTimePickerPackage(), // <------ add here
+        new RCTDateTimePickerPackage(this), // <------ add here
         new MainReactPackage());
     }
 }
@@ -64,7 +65,7 @@ public class MainActivity extends Activity implements DefaultHardwareBackBtnHand
       .setBundleAssetName("index.android.bundle")
       .setJSMainModuleName("index.android")
       .addPackage(new MainReactPackage())
-      .addPackage(new RCTDateTimePickerPackage())              // <------ add here
+      .addPackage(new RCTDateTimePickerPackage(this))              // <------ add here
       .setUseDeveloperSupport(BuildConfig.DEBUG)
       .setInitialLifecycleState(LifecycleState.RESUMED)
       .build();

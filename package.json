@@ -1,6 +1,6 @@
 {
   "name": "react-native-datetime",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "A datetime-picker for react-native support for android and ios",
   "main": "index.js",
   "repository": {

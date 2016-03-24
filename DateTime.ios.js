@@ -8,7 +8,7 @@ import React,{
     DatePickerIOS,
     Dimensions,
     Navigator,
-    PropTypes
+    PropTypes,
     StyleSheet,
     Text,
     TouchableOpacity,
@@ -32,7 +32,7 @@ export default class DateTimePicker extends Component {
             visible: false,
             mode: 'date',
             date: new Date()
-        }
+        };
         this.callback = ()=>{};
     }
 
@@ -43,7 +43,7 @@ export default class DateTimePicker extends Component {
         this.setState({
             mode: 'date',
             visible: true,
-            date: new Date(),
+            date: new Date()
         });
     }
 
@@ -54,7 +54,7 @@ export default class DateTimePicker extends Component {
         this.setState({
             mode: 'time',
             visible: true,
-            date: date,
+            date: date
         });
     }
 
@@ -65,19 +65,19 @@ export default class DateTimePicker extends Component {
         this.setState({
             mode: 'datetime',
             visible: true,
-            date: date,
+            date: date
         });
     }
 
     onClose() {
         this.setState({
-            visible: false,
+            visible: false
         });
     }
 
     onComplete() {
         this.setState({
-            visible: false,
+            visible: false
         });
         this.callback(this.state.date);
     }
@@ -93,23 +93,23 @@ export default class DateTimePicker extends Component {
                         <TouchableOpacity
                             style={styles.touchableOpacity}
                             activeOpacity={1}
-                            onPress={()=>{this.onClose()}} />
+                            onPress={()=>this.onClose()} />
                         <DatePickerIOS
                             date={this.state.date}
                             mode={this.state.mode}
-                            onDateChange={(date)=>{this.onDateChange(date)}}
+                            onDateChange={(date)=>this.onDateChange(date)}
                             style = {styles.datePicker}
                         />
                         <View style={styles.separator}/>
                         <TouchableOpacity
-                            onPress={()=>{this.onComplete()}}
+                            onPress={()=>this.onComplete()}
                             style={styles.button}>
                             <Text>{ this.props.okText }</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.touchableOpacity}
                             activeOpacity={1}
-                            onPress={()=>{this.onClose()}} />
+                            onPress={()=>this.onClose()} />
                     </View>
                 </View>
             );
