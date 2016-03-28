@@ -43,7 +43,7 @@ export default class DateTimePicker extends Component {
         this.setState({
             mode: 'date',
             visible: true,
-            date: new Date()
+            date: date
         });
     }
 
