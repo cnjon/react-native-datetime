@@ -23,5 +23,8 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/cnjon/react-native-datetime/issues"
+  },
+  "dependencies": {
+    "react-native": "^0.23.1"
   }
 }
