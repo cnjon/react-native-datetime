@@ -1,5 +1,5 @@
 {
-  "name": "react-native-datetime",
+  "name": "rn-datetime-fsl",
   "version": "0.1.1",
   "description": "A datetime-picker for react-native support for android and ios",
   "main": "index.js",
