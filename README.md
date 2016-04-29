@@ -111,7 +111,7 @@ var {
     Text,
 } = React;
 
-var DateTimePicker = require('react-native-datetime');
+var DateTimePicker = require('react-native-datetime').default;
 var Button = require('@remobile/react-native-simple-button');
 
 module.exports = React.createClass({
