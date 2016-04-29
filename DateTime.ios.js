@@ -87,6 +87,7 @@ export default class DateTimePicker extends Component {
     }
 
     render() {
+        const styles = { ..._styles, ...this.props.styles}
         return this.state.visible && (
                 <View style={styles.container}>
                     <View style={styles.actionSheetContainer}>
@@ -116,7 +117,7 @@ export default class DateTimePicker extends Component {
     }
 }
 
-const styles = StyleSheet.create({
+const _styles = StyleSheet.create({
     container:{
         top: 0,
         bottom: 0,
@@ -132,6 +133,7 @@ const styles = StyleSheet.create({
     },
     datePicker: {
         backgroundColor: 'white',
+        alignItems: 'center',
     },
     touchableOpacity: {
         flex: 1,
