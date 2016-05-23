@@ -3,12 +3,11 @@
  */
 'use strict';
 
-import React,{
-    Component,
+import React,{Component, PropTypes} from 'react';
+import {
     DatePickerIOS,
     Dimensions,
     Navigator,
-    PropTypes,
     StyleSheet,
     Text,
     TouchableOpacity,

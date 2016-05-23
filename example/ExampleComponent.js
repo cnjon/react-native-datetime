@@ -1,14 +1,15 @@
 /**
  * Created by Kevin on 16/3/24.
  */
-import React, {
-    AppRegistry,
-    Component,
+
+import React, { Component } from 'react';
+import {
     StyleSheet,
     TouchableOpacity,
     Text,
     View
 } from 'react-native';
+
 import DateTimePicker from 'react-native-datetime';
 
 export default class ExampleComponent extends Component {
