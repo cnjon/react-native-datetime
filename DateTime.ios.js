@@ -36,7 +36,7 @@ export default class DateTimePicker extends Component {
     }
 
     showDatePicker(date, callback) {
-        this.callback = callback;
+        this.callback = callback || this.props.onDateChange;
         date = (date || new Date());
 
         this.setState({
@@ -47,7 +47,7 @@ export default class DateTimePicker extends Component {
     }
 
     showTimePicker(date, callback) {
-        this.callback = callback;
+        this.callback = callback || this.props.onDateChange;
         date = (date || new Date());
 
         this.setState({
@@ -58,7 +58,7 @@ export default class DateTimePicker extends Component {
     }
 
     showDateTimePicker(date, callback) {
-        this.callback = callback;
+        this.callback = callback || this.props.onDateChange;
         date = (date || new Date());
 
         this.setState({
@@ -78,7 +78,7 @@ export default class DateTimePicker extends Component {
         this.setState({
             visible: false
         });
-        this.callback(this.state.date);
+        this.callback(this.props.date);
     }
 
     onDateChange(date) {
@@ -94,22 +94,19 @@ export default class DateTimePicker extends Component {
                             style={styles.touchableOpacity}
                             activeOpacity={1}
                             onPress={()=>this.onClose()} />
-                        <DatePickerIOS
-                            date={this.state.date}
-                            mode={this.state.mode}
-                            onDateChange={(date)=>this.onDateChange(date)}
-                            style = {styles.datePicker}
-                        />
-                        <View style={styles.separator}/>
                         <TouchableOpacity
                             onPress={()=>this.onComplete()}
                             style={styles.button}>
                             <Text>{ this.props.okText }</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity
-                            style={styles.touchableOpacity}
-                            activeOpacity={1}
-                            onPress={()=>this.onClose()} />
+                        <View style={styles.separator}/>
+                        <DatePickerIOS
+                            // date={this.state.date}
+                            // mode={this.state.mode}
+                            // onDateChange={(date)=>this.onDateChange(date)}
+                            style = {styles.datePicker}
+                            {...this.props}
+                        />
                     </View>
                 </View>
             );
@@ -138,10 +135,11 @@ const _styles = StyleSheet.create({
         flex: 1,
     },
     button: {
+        paddingHorizontal: 10,
         paddingVertical: 10,
         backgroundColor: 'white',
-        justifyContent: 'center',
-        alignItems: 'center'
+        justifyContent: 'flex-end',
+        alignItems: 'flex-end'
     },
     separator: {
         height: 1,
