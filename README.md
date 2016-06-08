@@ -3,7 +3,7 @@ A datetime-picker for react-native support for android and ios(base on @remobile
 
 ## Installation
 ```sh
-npm install react-native-datetime --save
+npm install react-native-yunpeng-datetime --save
 ```
 
 ### Installation (iOS)
