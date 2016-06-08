@@ -1,6 +1,6 @@
 {
   "name": "react-native-yunpeng-datetime",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "A datetime-picker for react-native support for android and ios",
   "main": "index.js",
   "repository": {
