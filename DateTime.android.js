@@ -28,7 +28,7 @@ export default class DateTimePicker extends Component {
 
     showDatePicker(date, callback) {
         date = date || new Date();
-        callback ＝ callback || this.props.onDateChange;
+        callback = callback || this.props.onDateChange;
         var options = {
             ...this.props,
             year:date.getFullYear(),
@@ -45,7 +45,7 @@ export default class DateTimePicker extends Component {
 
     showTimePicker(date, callback) {
         date = date || new Date();
-        callback ＝ callback || this.props.onDateChange;
+        callback = callback || this.props.onDateChange;
         var options = {
             ...this.props,
             hour:date.getHours(),
@@ -60,7 +60,7 @@ export default class DateTimePicker extends Component {
 
     showDateTimePicker(date, callback) {
         date = date || new Date();
-        callback ＝ callback || this.props.onDateChange;
+        callback = callback || this.props.onDateChange;
         var options = {
             ...this.props,
             year:date.getFullYear(),
