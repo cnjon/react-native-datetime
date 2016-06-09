@@ -1,11 +1,11 @@
 {
-  "name": "react-native-datetime",
-  "version": "0.1.2",
+  "name": "react-native-yunpeng-datetime",
+  "version": "0.1.4",
   "description": "A datetime-picker for react-native support for android and ios",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cnjon/react-native-datetime.git"
+    "url": "git+https://github.com/yptech/react-native-datetime.git"
   },
   "keywords": [
     "react-component",
@@ -17,11 +17,11 @@
     "datetime"
   ],
   "author": {
-    "name": "cnjon",
-    "url": "https://github.com/cnjon"
+    "name": "iday",
+    "url": "https://github.com/iday"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/cnjon/react-native-datetime/issues"
+    "url": "https://github.com/yptech/react-native-datetime/issues"
   }
 }
