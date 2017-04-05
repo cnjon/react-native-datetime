@@ -129,7 +129,6 @@ const _styles = StyleSheet.create({
     },
     datePicker: {
         backgroundColor: 'white',
-        alignItems: 'center',
     },
     touchableOpacity: {
         flex: 1,
